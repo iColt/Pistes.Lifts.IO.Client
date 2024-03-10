@@ -3,6 +3,8 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Polling;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Postes.Lifts.IO.Infrastructure.Parsers;
+using System.Text;
 
 
 namespace Pistes.Lifts.IO.TGNotificator;
@@ -23,8 +25,16 @@ class Program
             var message = update.Message;
             if (message.Text.Equals("/start", StringComparison.CurrentCultureIgnoreCase))
             {
-                //TODO: send context through container
-                //_serviceProvider.GetRequiredService<IGeneralResponseHandler>().Handle(botClient, update, cancellationToken);
+                var model = CarezzaParser.Parse("URL");
+                if(model.Configured)
+                {
+                    StringBuilder stringBuilder = new StringBuilder()
+                        .AppendLine("Lift status:")
+                        .AppendLine(model.LiftsStatus)
+                        .AppendLine("Slopes status:")
+                        .AppendLine(model.SlopesStatus);
+                    await botClient.SendTextMessageAsync(update.Message.Chat, stringBuilder.ToString());
+                }
                 return;
             }
         }

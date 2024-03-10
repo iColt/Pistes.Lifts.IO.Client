@@ -12,4 +12,8 @@
     <PackageReference Include="Telegram.Bot" Version="20.0.0-alpha.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Postes.Lifts.IO.Infrastructure\Postes.Lifts.IO.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

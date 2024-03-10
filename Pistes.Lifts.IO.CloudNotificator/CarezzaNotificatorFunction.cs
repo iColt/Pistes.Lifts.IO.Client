@@ -4,16 +4,16 @@ using Microsoft.Extensions.Logging;
 
 namespace Pistes.Lifts.IO.CloudNotificator
 {
-    public class Function1
+    public class CarezzaNotificatorFunction
     {
         private readonly ILogger _logger;
 
-        public Function1(ILoggerFactory loggerFactory)
+        public CarezzaNotificatorFunction(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<Function1>();
+            _logger = loggerFactory.CreateLogger<CarezzaNotificatorFunction>();
         }
 
-        [Function("Function1")]
+        [Function("CarezzaNotificatorFunction")]
         public void Run([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer)
         {
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
