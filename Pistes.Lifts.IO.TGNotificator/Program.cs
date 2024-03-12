@@ -3,9 +3,11 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Polling;
 using Microsoft.Extensions.DependencyInjection;
 using Postes.Lifts.IO.Infrastructure.Parsers;
-using System.Text;
 using Postes.Lifts.IO.Infrastructure.Constants;
 using Telegram.Bot.Exceptions;
+using Pistes.Lifts.IO.TGNotificator.Models;
+using Microsoft.Extensions.Configuration;
+using System.Text;
 
 namespace Pistes.Lifts.IO.TGNotificator;
 class Program
@@ -105,12 +107,30 @@ class Program
         Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(exception));
     }
 
-    private static IServiceProvider ConfigureServices()
+    //private static IServiceProvider ConfigureServices()
+    //{
+    //    var serviceProvider = new ServiceCollection();
+    //    //.AddTransient<IGeneralResponseHandler, GeneralResponseHandler>();
+
+    //    return serviceProvider.BuildServiceProvider();
+    //}
+
+    private static ServiceProvider ConfigureServices(IConfigurationRoot configModel)
     {
-        var serviceProvider = new ServiceCollection();
-        //.AddTransient<IGeneralResponseHandler, GeneralResponseHandler>();
+        var serviceProvider = new ServiceCollection()
+            .AddTransient<IBootstraper, Bootstraper>()
+            //.AddTransient<IGeneralResponseHandler, GeneralResponseHandler>()
+            .Configure<ConfigurationModel>(configModel.GetSection(Constants.AppSettings));
 
         return serviceProvider.BuildServiceProvider();
+    }
+
+    private static IConfigurationRoot BuildConfigurations()
+    {
+        return new ConfigurationBuilder()
+            .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "Configs"))
+            .AddJsonFile(path: "appconfig.json", optional: false, reloadOnChange: true)
+            .Build();
     }
 
     static void Main(string[] _)
