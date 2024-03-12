@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Postes.Lifts.IO.Infrastructure.Constants;
-using Pistes.Lifts.IO.TGNotificator.Models;
 using Microsoft.Extensions.Configuration;
+using Postes.Lifts.IO.Infrastructure.BotWrapper;
+using Postes.Lifts.IO.Infrastructure.Models;
 
 namespace Pistes.Lifts.IO.TGNotificator;
 class Program
@@ -9,7 +10,7 @@ class Program
     private static ServiceProvider ConfigureServices(IConfigurationRoot configModel)
     {
         var serviceProvider = new ServiceCollection()
-            .AddTransient<IBootstraper, Bootstraper>()
+            .AddTransient<IBotWrapper, BotWrapper>()
             //.AddTransient<IGeneralResponseHandler, GeneralResponseHandler>()
             .Configure<ConfigurationModel>(configModel.GetSection(Constants.AppSettings));
 
@@ -35,7 +36,7 @@ class Program
 
 
         //Resolve bootstraper
-        serviceProvider.GetService<IBootstraper>().Initialize();
+        serviceProvider.GetService<IBotWrapper>().Initialize();
 
         Console.ReadLine();
     }

@@ -33,4 +33,8 @@
     <ProjectReference Include="..\Postes.Lifts.IO.Infrastructure\Postes.Lifts.IO.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

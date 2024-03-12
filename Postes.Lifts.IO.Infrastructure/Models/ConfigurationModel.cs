@@ -1,4 +1,4 @@
-﻿namespace Pistes.Lifts.IO.TGNotificator.Models;
+﻿namespace Postes.Lifts.IO.Infrastructure.Models;
 
 public interface IConfigurationModel
 {
