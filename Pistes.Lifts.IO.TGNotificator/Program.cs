@@ -3,6 +3,7 @@ using Postes.Lifts.IO.Infrastructure.Constants;
 using Microsoft.Extensions.Configuration;
 using Postes.Lifts.IO.Infrastructure.BotWrapper;
 using Postes.Lifts.IO.Infrastructure.Models;
+using Postes.Lifts.IO.Infrastructure.Handlers;
 
 namespace Pistes.Lifts.IO.TGNotificator;
 class Program
@@ -11,7 +12,7 @@ class Program
     {
         var serviceProvider = new ServiceCollection()
             .AddTransient<IBotWrapper, BotWrapper>()
-            //.AddTransient<IGeneralResponseHandler, GeneralResponseHandler>()
+            .AddTransient<IGeneralResponseHandler, GeneralResponseHandler>()
             .Configure<ConfigurationModel>(configModel.GetSection(Constants.AppSettings));
 
         return serviceProvider.BuildServiceProvider();
