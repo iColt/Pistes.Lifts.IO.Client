@@ -13,9 +13,9 @@ namespace Postes.Lifts.IO.Infrastructure.Handlers
         Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken);
     }
 
-    public class GeneralResponseHandler(IOptions<IConfigurationModel> configModel) : IGeneralResponseHandler
+    public class GeneralResponseHandler(IOptions<ConfigurationModel> configModel) : IGeneralResponseHandler
     {
-        private readonly IOptions<IConfigurationModel> _configModel = configModel;
+        private readonly IOptions<ConfigurationModel> _configModel = configModel;
 
         //TODO: write to storage
         private static List<long> chatStorages = new();

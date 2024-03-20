@@ -15,7 +15,7 @@ namespace Postes.Lifts.IO.Infrastructure.BotWrapper
 
     public class BotWrapper(IOptions<ConfigurationModel> configModel, IGeneralResponseHandler generalResponseHandler) : IBotWrapper
     {
-        private readonly IOptions<IConfigurationModel> _configModel = configModel;
+        private readonly IOptions<ConfigurationModel> _configModel = configModel;
         private readonly IGeneralResponseHandler _generalResponseHandler = generalResponseHandler;
 
 
