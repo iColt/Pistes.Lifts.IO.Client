@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Pistes.Lifts.IO.CloudNotificator": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7080",
+      "launchBrowser": false
+    }
+  }
+}
