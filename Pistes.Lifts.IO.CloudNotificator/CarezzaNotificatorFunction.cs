@@ -11,11 +11,13 @@ namespace Pistes.Lifts.IO.CloudNotificator
     {
         private readonly ILogger<CarezzaNotificatorFunction> _logger;
 
+        //create bot
         public CarezzaNotificatorFunction(ILogger<CarezzaNotificatorFunction> logger)
         {
             _logger = logger;
         }
 
+        //check bot created
         [Function("CarezzaNotificatorFunctionTrigger")]
         public void TriggerImpl([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer)
         {
@@ -39,5 +41,10 @@ namespace Pistes.Lifts.IO.CloudNotificator
 
             return response;
         }
+
+        //function to create bot or check, it created already
+        //use container
+        //var value = Environment.GetEnvironmentVariable("BOT_TOKEN")
+        ///var value = Environment.GetEnvironmentVariable("WEBHOOK_ADDRESS")
     }
 }
